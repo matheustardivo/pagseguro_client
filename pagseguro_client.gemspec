@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Matheus Tardivo"]
   s.email       = ["matheustardivo@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{The new Pagseguro library to use with v2 services}
+  s.summary     = %q{The library to access the new services from Pagseguro (v2)}
   s.description = s.summary
 
   s.rubyforge_project = "pagseguro_client"
