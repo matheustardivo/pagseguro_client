@@ -60,6 +60,7 @@ Agora basta usar a url retornada para enviar o usuário para efetuar o pagamento
 
 ### Obtendo as notificações
 ```ruby
+# No seu controller
 def notificacao
   return unless request.post?
   
