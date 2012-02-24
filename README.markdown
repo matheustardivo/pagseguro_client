@@ -10,14 +10,15 @@ Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pa
 
 ### Instalação
 
-Adicione a biblioteca ao arquivo Gemfile:
+Adicione a biblioteca ao arquivo Gemfile: 
 
-~~~.ruby
+```ruby
 gem 'pagseguro_client', git: "git://github.com/matheustardivo/pagseguro_client.git"
-~~~
+```
 
-E crie o arquivo de configuração em `config/pagseguro.yml`:
-~~~.yml
+E crie o arquivo de configuração em `config/pagseguro.yml`: 
+
+```yaml
 development: &development
   base_url: "http://localhost:4000"
   email: matheustardivo@gmail.com
@@ -30,33 +31,35 @@ production:
   base_url: "https://ws.pagseguro.uol.com.br"
   email: matheustardivo@gmail.com
   token: "tokenGeradoPeloPagseguro"
-~~~
+```
 
 Para realizar os seus testes você pode usar um servidor de testes do Pagseguro que ainda está em fase de desenvolvimento, mas já pode ser acessado através do link: [Pagseguro Server](http://pss.tardivo.info)
 
 ### Gerando a sua ordem de pagamento
-~~~.ruby
+
+```ruby
 @order = PagseguroClient::Order.new(id) # Seu identificador da ordem de pagamento
 @order.add(
   id: "1", # Seu identificador do produto
   description: produto.descricao, 
   amount: produto.preco)
 @response = order.send_request
-~~~
+```
 
 ### Exemplo de resposta da ordem de pagamento
-~~~.ruby
+
+```ruby
 # Hash
 {
   code: "8CF4BE7DCECEF0F004A6DFA0A8243412",
   url: "https://ws.pagseguro.uol.com.br/v2/checkout/payment.html?code=8CF4BE7DCECEF0F004A6DFA0A8243412"
 }
-~~~
+```
 
 Agora basta usar a url retornada para enviar o usuário para efetuar o pagamento no site do Pagseguro.
 
 ### Obtendo as notificações
-~~~.ruby
+```ruby
 def notificacao
   return unless request.post?
   
@@ -65,7 +68,7 @@ def notificacao
   
   render nothing: true
 end
-~~~
+```
 
 O objeto `notification` possui os seguintes métodos:
 
