@@ -1,5 +1,6 @@
 require "spec_helper"
 
-describe PagseguroClient::Notification do
-  
+module PagseguroClient
+  describe Notification do
+  end
 end
