@@ -1,13 +1,13 @@
 module PagseguroClient
   class Order
-    
+
     attr_accessor :id, :products
-    
+
     def initialize(order_id)
       self.id = order_id
       self.products = []
     end
-    
+
     # The allowed values are:
     # - id (Required. Should match the product in your database)
     # - description (Required. Identifies the product)
@@ -16,7 +16,7 @@ module PagseguroClient
     def add(options)
       products.push(options)
     end
-    
+
     def data
       data = {
         email: PagseguroClient.email,
@@ -31,10 +31,10 @@ module PagseguroClient
         data["itemAmount#{index}"] = item[:amount]
         data["itemQuantity#{index}"] = item[:quantity] || 1
       end
-      
+
       data
     end
-    
+
     # Send a new payment request to Pagseguro
     # Returns the URL to redirect your user to complete the payment in Pagseguro
     def send_request
@@ -45,7 +45,7 @@ module PagseguroClient
 
       {
         code: code,
-        url: "#{PagseguroClient.base_url}/v2/checkout/payment.html?code=#{code}"
+        url: PagseguroClient.payment_url(code)
       }
     end
   end
