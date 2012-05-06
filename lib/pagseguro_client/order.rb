@@ -35,18 +35,41 @@ module PagseguroClient
       data
     end
 
+    def parse_response(xml)
+      doc = Nokogiri::XML(xml)
+
+      # Verify if this is an error
+      unless doc.css("error").empty?
+        code = doc.xpath("//code").text
+        message = doc.xpath("//message").text
+        PagseguroError.new(code, message)
+
+      else
+        code = doc.xpath("//code").text
+        {
+          code: code,
+          url: PagseguroClient.payment_url(code)
+        }
+      end
+    end
+
     # Send a new payment request to Pagseguro
     # Returns the URL to redirect your user to complete the payment in Pagseguro
     def send_request
-      response = RestClient.post("#{PagseguroClient.base_url}/v2/checkout", data)
+      begin
+        response = RestClient.post("#{PagseguroClient.base_url}/v2/checkout", data)
+        parse_response(response.body)
 
-      doc = Nokogiri::XML(response.body)
-      code = doc.xpath("//code").text
+      rescue => e
+        raise parse_response(e.response)
+      end
+    end
+  end
 
-      {
-        code: code,
-        url: PagseguroClient.payment_url(code)
-      }
+  class PagseguroError < StandardError
+    attr_reader :code, :message
+    def initialize(code, message)
+      @code, @message = code, message
     end
   end
 end
