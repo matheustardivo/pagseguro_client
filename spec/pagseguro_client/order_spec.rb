@@ -11,7 +11,7 @@ module PagseguroClient
       its(:id) { should == "ABCDEF" }
     end
 
-    context "order with attributes" do
+    context "order with attributes and products" do
       subject {
         order = Order.new("John Doe")
         order.add(id: "1", description: "Description", amount: 199)
