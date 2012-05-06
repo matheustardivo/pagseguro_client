@@ -10,17 +10,18 @@ Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pa
 
 ### Instalação
 
-Adicione a biblioteca ao arquivo Gemfile: 
+Adicione a biblioteca ao arquivo Gemfile:
 
 ```ruby
 gem 'pagseguro_client', git: "git://github.com/matheustardivo/pagseguro_client.git"
 ```
 
-E crie o arquivo de configuração em `config/pagseguro.yml`: 
+E crie o arquivo de configuração em `config/pagseguro.yml`:
 
 ```yaml
 development: &development
-  base_url: "http://localhost:4000"
+  ws_url: "http://localhost:4000"
+  ps_url: "http://localhost:4000"
   email: matheustardivo@gmail.com
   token: "a1951ac04115012fabb660334b97cc6e"
 
@@ -28,7 +29,8 @@ test:
   <<: *development
 
 production:
-  base_url: "https://ws.pagseguro.uol.com.br"
+  ws_url: "https://ws.pagseguro.uol.com.br"
+  ps_url: "https://pagseguro.uol.com.br"
   email: matheustardivo@gmail.com
   token: "tokenGeradoPeloPagseguro"
 ```
@@ -41,7 +43,7 @@ Para realizar os seus testes você pode usar um servidor de testes do Pagseguro 
 @order = PagseguroClient::Order.new(id) # Seu identificador da ordem de pagamento
 @order.add(
   id: "1", # Seu identificador do produto
-  description: produto.descricao, 
+  description: produto.descricao,
   amount: produto.preco)
 @response = order.send_request
 ```
@@ -63,10 +65,10 @@ Agora basta usar a url retornada para enviar o usuário para efetuar o pagamento
 # No seu controller
 def notificacao
   return unless request.post?
-  
+
   @notification = PagseguroClient::Notification.retrieve(params[:notificationCode])
   # Seu código para utilizar a notificação
-  
+
   render nothing: true
 end
 ```
@@ -75,7 +77,6 @@ O objeto `notification` possui os seguintes métodos:
 
 * `PagseguroClient::Notification#code`: Código da notificação
 * `PagseguroClient::Notification#order_id`: Código da sua ordem de pagamento
-* `PagseguroClient::Notification#order_code`: Código do Pagseguro para sua ordem de pagamento
 * `PagseguroClient::Notification#status`: Status da ordem de pagamento atual
 * `PagseguroClient::Notification#payment_method`: Método utilizado para o pagamento
 
