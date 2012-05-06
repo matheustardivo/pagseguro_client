@@ -19,12 +19,27 @@ module PagseguroClient
       7 => :canceled
     }
 
-    attr_accessor :code, :order_id, :order_code, :status, :payment_method
+    attr_accessor :code, :order_id, :status, :payment_method
 
     def initialize(attributes = {})
       attributes.each do |name, value|
         send("#{name}=", value)
       end
+    end
+
+    def self.create_by_xml(xml)
+      doc = Nokogiri::XML(xml)
+      code = doc.xpath("//transaction/code").text
+      order_id = doc.xpath("//reference").text
+      status = doc.xpath("//status").text.to_i
+      payment_method = doc.xpath("//paymentMethod/type").text.to_i
+
+      notification = Notification.new(
+        code: code,
+        order_id: order_id,
+        status: STATUS[status],
+        payment_method: PAYMENT_METHOD[payment_method]
+      )
     end
 
     def self.retrieve(code)
@@ -37,19 +52,7 @@ module PagseguroClient
         }
       )
 
-      doc = Nokogiri::XML(response.body)
-      order_id = doc.xpath("//reference").text
-      order_code = doc.xpath("//code").text
-      status = doc.xpath("//status").text.to_i
-      payment_method = doc.xpath("//paymentMethod/type").text.to_i
-
-      Notification.new(
-        code: code,
-        order_id: order_id,
-        order_code: order_code,
-        status: STATUS[status],
-        payment_method: PAYMENT_METHOD[payment_method]
-      )
+      create_by_xml(response.body)
     end
   end
 end
