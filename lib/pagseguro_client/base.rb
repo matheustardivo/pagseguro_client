@@ -23,8 +23,12 @@ module PagseguroClient
     @@config[Rails.env]
   end
 
-  def base_url
-    config["base_url"]
+  def ws_url
+    config["ws_url"]
+  end
+
+  def ps_url
+    config["ps_url"]
   end
 
   def token
@@ -35,12 +39,16 @@ module PagseguroClient
     config["email"]
   end
 
+  def checkout_url
+    "#{ws_url}/v2/checkout"
+  end
+
   def payment_url(code)
-    "#{base_url}/v2/checkout/payment.html?code=#{code}"
+    "#{ps_url}/v2/checkout/payment.html?code=#{code}"
   end
 
   def notification_url(code)
-    "#{base_url}/v2/transactions/notifications/#{code}"
+    "#{ws_url}/v2/transactions/notifications/#{code}"
   end
 
   class MissingEnvironmentError < StandardError; end

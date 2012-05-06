@@ -27,7 +27,7 @@ module PagseguroClient
       products.each_with_index do |item, index|
         index += 1
         data["itemId#{index}"] = item[:id]
-        data["itemDescription#{index}"] = item[:description]
+        data["itemDescription#{index}"] = item[:description].to_s.unpack("U*").pack("C*")
         data["itemAmount#{index}"] = item[:amount]
         data["itemQuantity#{index}"] = item[:quantity] || 1
       end
@@ -57,7 +57,11 @@ module PagseguroClient
     # Returns the URL to redirect your user to complete the payment in Pagseguro
     def send_request
       begin
-        response = RestClient.post("#{PagseguroClient.base_url}/v2/checkout", data)
+        response = RestClient.post(PagseguroClient.checkout_url, data, {
+          :content_type => "application/x-www-form-urlencoded",
+          :charset => "UTF-8"
+        })
+
         parse_response(response.body)
 
       rescue => e
