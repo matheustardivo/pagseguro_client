@@ -22,6 +22,7 @@ E crie o arquivo de configuração em `config/pagseguro.yml`:
 development: &development
   ws_url: "http://localhost:4000"
   ps_url: "http://localhost:4000"
+  return_to: "http://localhost:4000"
   email: matheustardivo@gmail.com
   token: "a1951ac04115012fabb660334b97cc6e"
 
@@ -31,6 +32,7 @@ test:
 production:
   ws_url: "https://ws.pagseguro.uol.com.br"
   ps_url: "https://pagseguro.uol.com.br"
+  return_to: "http://www.sualoja.com.br"
   email: matheustardivo@gmail.com
   token: "tokenGeradoPeloPagseguro"
 ```
