@@ -23,6 +23,10 @@ module PagseguroClient
     @@config[Rails.env]
   end
 
+  def redirect?
+    config.has_key?("return_to")
+  end
+
   def ws_url
     config["ws_url"]
   end
@@ -37,6 +41,10 @@ module PagseguroClient
 
   def email
     config["email"]
+  end
+
+  def redirect_url
+    config["return_to"]
   end
 
   def checkout_url
