@@ -1,7 +1,9 @@
 ENV["BUNDLE_GEMFILE"] = File.dirname(__FILE__) + "/../../../Gemfile"
+
 require "bundler"
-Bundler.setup
 require "rails/all"
+
+Bundler.setup
 Bundler.require(:default)
 
 module PagSeguroClient
