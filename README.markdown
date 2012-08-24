@@ -36,7 +36,7 @@ production:
   token: "tokenGeradoPeloPagseguro"
 ```
 
-Para realizar os seus testes você pode usar um servidor de testes do Pagseguro que ainda está em fase de desenvolvimento, mas já pode ser acessado através do link: [Pagseguro Server](http://pss.tardivo.info)
+Para realizar os testes de integração da sua aplicação com o gateway, você pode usar um servidor de testes desenvolvido pelo próprio Pagseguro: [Pagseguro Server](https://github.com/carlosdelfino/PagSeguro-TestServer)
 
 ### Gerando a sua ordem de pagamento
 
@@ -63,7 +63,7 @@ Agora basta usar a url retornada para enviar o usuário para efetuar o pagamento
 
 ### Configurando opção para URL de retorno dinâmica
 
-Para configurar uma URL de retorno dinâmica a sua aplicação Rails, basta adicionar ao arquivo pagseguro.yml a opção return_to:
+Para configurar uma URL de retorno dinâmica a sua aplicação Rails, basta adicionar ao arquivo pagseguro.yml a opção return_to com o endereço para retorno que você configurou na sua aplicação:
 
 ```yaml
 production:
