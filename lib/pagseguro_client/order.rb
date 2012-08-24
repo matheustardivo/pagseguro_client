@@ -18,12 +18,9 @@ module PagseguroClient
     end
 
     def data
-      data = {
-        email: PagseguroClient.email,
-        token: PagseguroClient.token,
-        currency: "BRL",
-        reference: id
-      }
+      data = { email: PagseguroClient.email, token: PagseguroClient.token, currency: "BRL", reference: id }
+      data["redirectURL"] = PagseguroClient.redirect_url if PagseguroClient.redirect?
+
       products.each_with_index do |item, index|
         index += 1
         data["itemId#{index}"] = item[:id]

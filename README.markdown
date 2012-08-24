@@ -3,6 +3,7 @@
 Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pagseguro.uol.com.br), gateway de pagamentos do [UOL](http://uol.com.br).
 
 ## Changelog
+* Adicionada opção para URL de retorno dinâmica
 * Implementação parcial da [API de pagamentos](https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-pagamentos.html)
 * Implementação parcial da [API de notificações](https://pagseguro.uol.com.br/v2/guia-de-integracao/notificacoes.html)
 
@@ -13,7 +14,7 @@ Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pa
 Adicione a biblioteca ao arquivo Gemfile:
 
 ```ruby
-gem 'pagseguro_client', git: "git://github.com/matheustardivo/pagseguro_client.git"
+gem 'pagseguro_client', git: "git://github.com/fknappe/pagseguro_client.git"
 ```
 
 E crie o arquivo de configuração em `config/pagseguro.yml`:
@@ -60,7 +61,21 @@ Para realizar os seus testes você pode usar um servidor de testes do Pagseguro 
 
 Agora basta usar a url retornada para enviar o usuário para efetuar o pagamento no site do Pagseguro.
 
+### Configurando opção para URL de retorno dinâmica
+
+Para configurar uma URL de retorno dinâmica a sua aplicação Rails, basta adicionar ao arquivo pagseguro.yml a opção return_to:
+
+```yaml
+production:
+  ws_url: "https://ws.pagseguro.uol.com.br"
+  ps_url: "https://pagseguro.uol.com.br"
+  return_to: "http://www.sualoja.com.br/sucesso"
+  email: matheustardivo@gmail.com
+  token: "tokenGeradoPeloPagseguro"
+```
+
 ### Obtendo as notificações
+
 ```ruby
 # No seu controller
 def notificacao

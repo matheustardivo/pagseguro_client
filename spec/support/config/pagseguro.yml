@@ -1,6 +1,7 @@
 development: &development
   ws_url: "http://localhost:4000"
   ps_url: "http://localhost:4000"
+  return_to: "http://localhost:4000/success"
   email: matheustardivo@gmail.com
   token: "a1951ac04115012fabb660334b97cc6e"
 
