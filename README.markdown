@@ -14,7 +14,7 @@ Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pa
 Adicione a biblioteca ao arquivo Gemfile:
 
 ```ruby
-gem 'pagseguro_client', git: "git://github.com/matheustardivo/pagseguro_client.git"
+gem 'pagseguro_client', git: "git://github.com/fknappe/pagseguro_client.git"
 ```
 
 E crie o arquivo de configuração em `config/pagseguro.yml`:
