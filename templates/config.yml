@@ -1,0 +1,16 @@
+development: &development
+  ws_url: "http://localhost:4000"
+  ps_url: "http://localhost:4000"
+  return_to: "http://localhost:4000/successo"
+  email: matheustardivo@gmail.com
+  token: "tokenGeradoPeloPagseguro"
+
+test:
+  <<: *development
+
+production:
+  ws_url: "https://ws.pagseguro.uol.com.br"
+  ps_url: "https://pagseguro.uol.com.br"
+  return_to: "http://www.sualoja.com.br/successo"
+  email: matheustardivo@gmail.com
+  token: "tokenGeradoPeloPagseguro"

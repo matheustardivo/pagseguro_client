@@ -3,6 +3,7 @@
 Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pagseguro.uol.com.br), gateway de pagamentos do [UOL](http://uol.com.br).
 
 ## Changelog
+* Adicionado gerador para instalação da biblioteca em projetos Rails
 * Adicionada opção para URL de retorno dinâmica
 * Implementação parcial da [API de pagamentos](https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-pagamentos.html)
 * Implementação parcial da [API de notificações](https://pagseguro.uol.com.br/v2/guia-de-integracao/notificacoes.html)
@@ -17,14 +18,19 @@ Adicione a biblioteca ao arquivo Gemfile:
 gem 'pagseguro_client', git: "git://github.com/fknappe/pagseguro_client.git"
 ```
 
-E crie o arquivo de configuração em `config/pagseguro.yml`:
+Depois de realizar a instalação da biblioteca, você precisará gerar o arquivo de configuração, que deve residir em config/pagseguro.yml. Para gerar o arquivo a partir de um modelo execute
+
+      rails generate pagseguro_client:install
+
+O arquivo de configuração gerado será parecido com isso: 
 
 ```yaml
 development: &development
   ws_url: "http://localhost:4000"
   ps_url: "http://localhost:4000"
+  return_to: "http://localhost:4000/successo"
   email: matheustardivo@gmail.com
-  token: "a1951ac04115012fabb660334b97cc6e"
+  token: "tokenGeradoPeloPagseguro"
 
 test:
   <<: *development
@@ -32,6 +38,7 @@ test:
 production:
   ws_url: "https://ws.pagseguro.uol.com.br"
   ps_url: "https://pagseguro.uol.com.br"
+  return_to: "http://www.sualoja.com.br/successo"
   email: matheustardivo@gmail.com
   token: "tokenGeradoPeloPagseguro"
 ```
