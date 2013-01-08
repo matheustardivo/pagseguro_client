@@ -7,6 +7,8 @@ Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pa
 * Adicionada opção para URL de retorno dinâmica
 * Implementação parcial da [API de pagamentos](https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-pagamentos.html)
 * Implementação parcial da [API de notificações](https://pagseguro.uol.com.br/v2/guia-de-integracao/notificacoes.html)
+* Implementação parcial da [API de
+  transações](https://pagseguro.uol.com.br/v2/guia-de-integracao/consulta-de-transacoes-por-codigo.html)
 
 ## Como usar
 
@@ -101,6 +103,28 @@ O objeto `notification` possui os seguintes métodos:
 * `PagseguroClient::Notification#order_id`: Código da sua ordem de pagamento
 * `PagseguroClient::Notification#status`: Status da ordem de pagamento atual
 * `PagseguroClient::Notification#payment_method`: Método utilizado para o pagamento
+* `PagseguroClient::Notification#client`: Dados do comprador
+* `PagseguroClient::Notification#address`: Endereço do comprador
+
+### Consultando Transações
+
+```ruby
+# No seu controller
+def complete
+
+  @transaction = PagseguroClient::Transaction.retrieve(params[:transaction_id_])
+  # Seu código para utilizar a transaction
+end
+```
+
+O objeto `transaction` possui os seguintes métodos:
+
+* `PagseguroClient::Transaction#code`: Código da notificação
+* `PagseguroClient::Transaction#order_id`: Código da sua ordem de pagamento
+* `PagseguroClient::Transaction#status`: Status da ordem de pagamento atual
+* `PagseguroClient::Transaction#payment_method`: Método utilizado para o pagamento
+* `PagseguroClient::Transaction#client`: Dados do comprador
+* `PagseguroClient::Transaction#address`: Endereço do comprador
 
 #### Métodos de pagamento
 
@@ -121,6 +145,8 @@ O objeto `notification` possui os seguintes métodos:
 
 ## Autor
 Matheus Tardivo (<http://matheustardivo.com>)
+Raphael Costa (<http://raphaelcosta.net>)
+André Kupkovski (<http://kupkovski.github.com>)
 
 ## Licença:
 
