@@ -1,6 +1,8 @@
 *.gem
+*.log
+
 .bundle
+.rbenv-gemsets
+
 Gemfile.lock
 pkg/*
-
-*.log
