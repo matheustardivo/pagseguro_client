@@ -5,6 +5,7 @@
 	<reference>REF1234</reference>
 	<type>1</type>
 	<status>3</status>
+  <lastEventDate>2011-02-15T17:39:14.000-03:00</lastEventDate> 
 	<paymentMethod>
 		<type>1</type>
 		<code>101</code>

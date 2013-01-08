@@ -58,6 +58,10 @@ module PagseguroClient
   def notification_url(code)
     "#{ws_url}/v2/transactions/notifications/#{code}"
   end
+  
+  def transaction_url(code)
+    "#{ws_url}/v2/transactions/#{code}"
+  end
 
   class MissingEnvironmentError < StandardError; end
   class MissingConfigurationError < StandardError; end
