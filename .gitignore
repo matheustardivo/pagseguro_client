@@ -1,10 +1,12 @@
 *.gem
+*.log
+
 .bundle
+.rbenv-gemsets
+
 Gemfile.lock
 pkg/*
 
 *.log
-
-spec/support/log/test.log
-
 .DS_Store
+
