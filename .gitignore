@@ -6,3 +6,7 @@
 
 Gemfile.lock
 pkg/*
+
+spec/support/log/test.log
+
+.DS_Store
