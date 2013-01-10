@@ -5,7 +5,7 @@ require "pagseguro_client/version"
 Gem::Specification.new do |s|
   s.name        = "pagseguro_client"
   s.version     = PagseguroClient::VERSION
-  s.authors     = ["Matheus Tardivo", "Raphael Costa", "André Kupkovski"]
+  s.authors     = ["Matheus Tardivo", "Raphael Costa", "Andre Kupkovski"]
   s.email       = ["matheustardivo@gmail.com", "raphael@raphaelcosta.net", "kupkovski@gmail.com"]
   s.homepage    = "https://github.com/matheustardivo/pagseguro_client"
   s.summary     = %q{The library to access the new services from Pagseguro (v2)}
