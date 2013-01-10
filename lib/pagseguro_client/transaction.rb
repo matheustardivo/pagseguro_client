@@ -27,7 +27,7 @@ module PagseguroClient
     end
 
     def self.create_by_xml(xml)
-      doc = Nokogiri::XML(xml, nil , 'UTF-8')
+      doc = Nokogiri::XML(xml)
       code = doc.xpath("//transaction/code").text
       order_id = doc.xpath("//reference").text
       status = doc.xpath("//status").text.to_i
