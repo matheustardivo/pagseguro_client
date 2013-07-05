@@ -1,10 +1,11 @@
 module PagseguroClient
   class Order
 
-    attr_accessor :id, :products
+    attr_accessor :id, :products, :redirect_url
 
-    def initialize(order_id)
+    def initialize(order_id, redirect_url=nil)
       self.id = order_id
+      self.redirect_url = redirect_url
       self.products = []
     end
 
@@ -19,7 +20,8 @@ module PagseguroClient
 
     def data
       data = { email: PagseguroClient.email, token: PagseguroClient.token, currency: "BRL", reference: id }
-      data["redirectURL"] = PagseguroClient.redirect_url if PagseguroClient.redirect?
+      data["redirectURL"] = redirect_url
+      data["redirectURL"] ||= PagseguroClient.redirect_url if PagseguroClient.redirect?
 
       products.each_with_index do |item, index|
         index += 1
