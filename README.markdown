@@ -1,4 +1,4 @@
-# PAGSEGURO Client
+# PAGSEGURO Client [![Build Status](https://travis-ci.org/matheustardivo/pagseguro_client.png?branch=master)](https://travis-ci.org/matheustardivo/pagseguro_client) [![Code Climate](https://codeclimate.com/github/matheustardivo/pagseguro_client.png)](https://codeclimate.com/github/matheustardivo/pagseguro_client) [![Coverage Status](https://coveralls.io/repos/matheustardivo/pagseguro_client/badge.png)](https://coveralls.io/r/matheustardivo/pagseguro_client)
 
 Este é um plugin do Ruby on Rails que permite utilizar o [PagSeguro](https://pagseguro.uol.com.br), gateway de pagamentos do [UOL](http://uol.com.br).
 
