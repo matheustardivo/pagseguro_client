@@ -18,10 +18,10 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_development_dependency  "rspec-rails"  , "~> 2.9"
-  s.add_development_dependency  "rails"        , "~> 3.2"
-  s.add_development_dependency  "rake"         , "~> 0.9"
-  s.add_development_dependency  "sqlite3"      , "~> 1.3"
-  s.add_runtime_dependency      "nokogiri"     , "~> 1.5"
-  s.add_runtime_dependency      "rest-client"  , "~> 1.6"
+  s.add_development_dependency "bundler"     , "~> 1.3"
+  s.add_development_dependency "rake"        , "~> 10.1"
+  s.add_development_dependency "rspec"       , "~> 2.13"
+  s.add_development_dependency "coveralls"   , "~> 0.6"
+  s.add_runtime_dependency     "nokogiri"    , "~> 1.6"
+  s.add_runtime_dependency     "rest-client" , "~> 1.6"
 end
