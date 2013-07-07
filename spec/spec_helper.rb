@@ -1,6 +1,9 @@
-ENV["RAILS_ENV"] = "test"
+require "coveralls"
+Coveralls.wear!
 
-require "rails"
+require "bundler"
+
+Bundler.setup(:default, :development)
+Bundler.require
+
 require "pagseguro_client"
-require "support/config/boot"
-require "rspec/rails"
