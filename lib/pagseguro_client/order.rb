@@ -3,7 +3,7 @@ module PagseguroClient
 
     attr_accessor :id, :products, :redirect_url
 
-    def initialize(order_id, redirect_url=nil)
+    def initialize(order_id, redirect_url = nil)
       self.id = order_id
       self.redirect_url = redirect_url
       self.products = []
