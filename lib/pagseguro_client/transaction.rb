@@ -18,7 +18,12 @@ module PagseguroClient
       7 => :canceled
     }
 
-    attr_accessor :code, :order_id, :status, :payment_method, :last_event_date, :sender, :address
+    SHIPPING_TYPE = {
+      1 => :pac,
+      2 => :sedex
+    }
+
+    attr_accessor :code, :order_id, :status, :payment_method, :last_event_date, :sender, :address, :shipping
 
     def initialize(attributes = {})
       attributes.each do |name, value|
@@ -39,6 +44,7 @@ module PagseguroClient
         area_code: doc.xpath("//transaction/sender/phone/areaCode").text,
         number: doc.xpath("//transaction/sender/phone/number").text
       }
+
       address = {
         country: doc.xpath("//transaction/shipping/address/country").text,
         state: doc.xpath("//transaction/shipping/address/state").text,
@@ -49,7 +55,12 @@ module PagseguroClient
         number: doc.xpath("//transaction/shipping/address/number").text,
         complement: doc.xpath("//transaction/shipping/address/complement").text
       }
-      
+
+      shipping = {
+        type: SHIPPING_TYPE[doc.xpath("//transaction/shipping/type").text.to_i],
+        cost: doc.xpath("//transaction/shipping/cost").text.to_f
+      }
+
       transaction = Transaction.new(
         code: code,
         order_id: order_id,
@@ -61,10 +72,11 @@ module PagseguroClient
           phone: phone
         },
         address: address,
-        last_event_date: last_event_date
+        last_event_date: last_event_date,
+        shipping: shipping
       )
     end
-    
+
     def self.url(code)
       PagseguroClient.transaction_url(code)
     end
