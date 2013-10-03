@@ -144,10 +144,10 @@ O objeto `transaction` possui os seguintes métodos:
 * `canceled`: Cancelado
 
 ## Autor
-Matheus Tardivo (<http://matheustardivo.com>)
-Raphael Costa (<http://raphaelcosta.net>)
-André Kupkovski (<http://kupkovski.github.com>)
-Heitor Salazar Baldelli (<http://www.woollu.com>)
+* Matheus Tardivo (<http://matheustardivo.com>)
+* Raphael Costa (<http://raphaelcosta.net>)
+* André Kupkovski (<http://kupkovski.github.com>)
+* Heitor Salazar Baldelli (<http://www.woollu.com>)
 
 ## Licença:
 
