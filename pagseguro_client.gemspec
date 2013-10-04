@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/matheustardivo/pagseguro_client"
   s.summary     = %q{The library to access the new services from Pagseguro (v2)}
   s.description = s.summary
+  s.license     = "MIT"
 
   s.rubyforge_project = "pagseguro_client"
 
