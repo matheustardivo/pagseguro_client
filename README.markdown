@@ -149,6 +149,6 @@ O objeto `transaction` possui os seguintes métodos:
 * André Kupkovski (<http://kupkovski.github.com>)
 * Heitor Salazar Baldelli (<http://www.woollu.com>)
 
-## Licença:
+## Licença (MIT):
 
 [Mais informações no arquivo LICENSE.txt](LICENSE.txt)
